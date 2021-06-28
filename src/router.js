@@ -9,7 +9,7 @@ Vue.use(Router);
 const routes = [
   { path: "/", component: List },
   { path: "/new", component: New },
-  { path: "/edit/:id", component: Edit, props: true, name: "edit" },
+  { path: "/edit/:id", component: Edit, name: "edit" },
 ];
 
 const router = new Router({
