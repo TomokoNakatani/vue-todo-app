@@ -10,9 +10,14 @@
         <th>タイトル</th>
         <th>概要</th>
       </tr>
-      <tr v-for="task in tasks" :key="task.title">
+      <tr v-for="(task, index) in tasks" :key="index">
         <td>{{ task.title }}</td>
         <td>{{ task.body }}</td>
+        <td>
+          <router-link :to="{ name: 'edit', params: { id: index } }">
+            <button>編集</button>
+          </router-link>
+        </td>
       </tr>
     </table>
   </div>
