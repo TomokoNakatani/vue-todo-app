@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "New",
@@ -31,9 +31,10 @@ export default {
     return { title: "", body: "" };
   },
   methods: {
+    ...mapActions(["addTasks"]),
     addTodo() {
       if (this.title == "") return alert("タイトルを入力してください");
-      this.tasks.push({
+      this.addTasks({
         title: this.title,
         body: this.body,
       });

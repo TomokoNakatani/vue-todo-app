@@ -16,6 +16,19 @@ const store = new Vuex.Store({
       return state.tasks;
     },
   },
+  actions: {
+    addTasks({ commit }, { title, body }) {
+      commit("addTasks", { title: title, body: body });
+    },
+  },
+  mutations: {
+    addTasks(state, { title, body }) {
+      state.tasks.push({
+        title: title,
+        body: body,
+      });
+    },
+  },
 });
 
 export default store;
