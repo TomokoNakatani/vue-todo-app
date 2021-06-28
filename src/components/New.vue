@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "New",
@@ -40,11 +40,6 @@ export default {
       });
       this.$router.push("/");
     },
-  },
-  computed: {
-    ...mapGetters({
-      tasks: "getTasks",
-    }),
   },
 };
 </script>
