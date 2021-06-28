@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>タスク一覧</h1>
-    <router-link to="/new" tag="button">
-      新規作成
+    <router-link to="/new">
+      <button>新規作成</button>
     </router-link>
 
     <table>
