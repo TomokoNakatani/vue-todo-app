@@ -17,23 +17,19 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    addTasks({ commit }, { title, body }) {
-      commit("addTasks", { title: title, body: body });
+    addTasks({ commit }, params) {
+      commit("addTasks", params);
     },
-    updateTasks({ commit }, { taskId, title, body }) {
-      commit("updateTasks", { taskId: taskId, title: title, body: body });
+    updateTasks({ commit }, params) {
+      commit("updateTasks", params);
     },
   },
   mutations: {
-    addTasks(state, { title, body }) {
-      state.tasks.push({
-        title: title,
-        body: body,
-      });
+    addTasks(state, params) {
+      state.tasks.push(params);
     },
-    updateTasks(state, { taskId, title, body }) {
-      state.tasks[taskId].title = title;
-      state.tasks[taskId].body = body;
+    updateTasks(state, { taskId, ...params }) {
+      state.tasks[taskId] = params;
     },
   },
 });
