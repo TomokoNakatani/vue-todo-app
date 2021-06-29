@@ -23,6 +23,9 @@ const store = new Vuex.Store({
     updateTasks({ commit }, params) {
       commit("updateTasks", params);
     },
+    deleteTasks({ commit }, index) {
+      commit("deleteTasks", index);
+    },
   },
   mutations: {
     addTasks(state, params) {
@@ -30,6 +33,9 @@ const store = new Vuex.Store({
     },
     updateTasks(state, { taskId, ...params }) {
       state.tasks[taskId] = params;
+    },
+    deleteTasks(state, index) {
+      state.tasks.splice(index, 1);
     },
   },
 });

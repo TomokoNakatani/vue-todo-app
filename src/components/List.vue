@@ -22,16 +22,27 @@
             <button>編集</button>
           </router-link>
         </td>
+        <td>
+          <input type="submit" @click="deleteTask(index)" value="削除" />
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "List",
+  methods: {
+    ...mapActions(["deleteTasks"]),
+    deleteTask(index) {
+      if (confirm("本当に削除しますか？")) {
+        this.deleteTasks(index);
+      }
+    },
+  },
   computed: {
     ...mapGetters({
       tasks: "getTasks",
