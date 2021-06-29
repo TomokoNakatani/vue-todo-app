@@ -14,9 +14,6 @@ export default {
 table {
   border-collapse: collapse;
 }
-tr {
-  border-bottom: 1px solid #999;
-}
 th {
   overflow: auto;
   padding: 10px;
