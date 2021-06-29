@@ -20,6 +20,9 @@ const store = new Vuex.Store({
     addTasks({ commit }, { title, body }) {
       commit("addTasks", { title: title, body: body });
     },
+    updateTasks({ commit }, { taskId, title, body }) {
+      commit("updateTasks", { taskId: taskId, title: title, body: body });
+    },
   },
   mutations: {
     addTasks(state, { title, body }) {
@@ -27,6 +30,10 @@ const store = new Vuex.Store({
         title: title,
         body: body,
       });
+    },
+    updateTasks(state, { taskId, title, body }) {
+      state.tasks[taskId].title = title;
+      state.tasks[taskId].body = body;
     },
   },
 });

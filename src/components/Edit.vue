@@ -23,29 +23,37 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Edit",
   data() {
     return {
-      title: this.$store.state.tasks[this.$route.params.id].title,
-      body: this.$store.state.tasks[this.$route.params.id].body,
-      currentTask: this.$store.state.tasks[this.$route.params.id],
+      title: "",
+      body: "",
     };
   },
+  created() {
+    this.title = this.getTasks[this.taskId].title;
+    this.body = this.getTasks[this.taskId].body;
+  },
   methods: {
+    ...mapActions(["updateTasks"]),
     updateTask() {
       if (this.title == "") return alert("タイトルを入力してください");
-      this.currentTask.title = this.title;
-      this.currentTask.body = this.body;
+      this.updateTasks({
+        taskId: this.taskId,
+        title: this.title,
+        body: this.body,
+      });
       this.$router.push("/");
     },
   },
   computed: {
-    ...mapGetters({
-      tasks: "getTasks",
-    }),
+    ...mapGetters(["getTasks"]),
+    taskId() {
+      return this.$route.params.id;
+    },
   },
 };
 </script>
