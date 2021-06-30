@@ -1,37 +1,21 @@
 <template>
   <div>
     <h1>タスク編集</h1>
-
-    <table>
-      <tr>
-        <th>タイトル</th>
-        <td>
-          <input type="text" size="30" v-model="title" />
-        </td>
-      </tr>
-      <tr>
-        <th>概要</th>
-        <td>
-          <textarea cols="30" v-model="body"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <input type="submit" @click="updateTask()" value="更新" />
-      </tr>
-    </table>
+    <Form buttonText="更新" :title="title" :body="body" @submit="updateTask" />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Form from "./Form";
 
 export default {
   name: "Edit",
+  components: {
+    Form,
+  },
   data() {
-    return {
-      title: "",
-      body: "",
-    };
+    return { title: "", body: "" };
   },
   created() {
     this.title = this.getTasks[this.taskId].title;
@@ -39,12 +23,12 @@ export default {
   },
   methods: {
     ...mapActions(["updateTasks"]),
-    updateTask() {
-      if (this.title == "") return alert("タイトルを入力してください");
+    updateTask(form) {
+      if (form.title == "") return alert("タイトルを入力してください");
       this.updateTasks({
         taskId: this.taskId,
-        title: this.title,
-        body: this.body,
+        title: form.title,
+        body: form.body,
       });
       this.$router.push("/");
     },

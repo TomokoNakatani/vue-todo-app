@@ -10,7 +10,7 @@
         <th>タイトル</th>
         <th>概要</th>
       </tr>
-      <tr v-for="(task, index) in tasks" :key="index">
+      <tr v-for="(task, index) in getTasks" :key="index">
         <td>
           <router-link :to="{ name: 'show', params: { id: index } }">
             {{ task.title }}
@@ -44,9 +44,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      tasks: "getTasks",
-    }),
+    ...mapGetters(["getTasks"]),
   },
 };
 </script>
