@@ -1,42 +1,29 @@
 <template>
   <div>
     <h1>タスク新規作成</h1>
-
-    <table>
-      <tr>
-        <th>タイトル</th>
-        <td>
-          <input type="text" size="30" v-model="title" />
-        </td>
-      </tr>
-      <tr>
-        <th>概要</th>
-        <td>
-          <textarea cols="30" v-model="body"></textarea>
-        </td>
-      </tr>
-      <tr>
-        <input type="submit" @click="addTodo()" value="追加" />
-      </tr>
-    </table>
+    <Form buttonText="追加" :title="title" :body="body" @submit="addTask" />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Form from "./Form";
 
 export default {
   name: "New",
+  components: {
+    Form,
+  },
   data() {
     return { title: "", body: "" };
   },
   methods: {
     ...mapActions(["addTasks"]),
-    addTodo() {
-      if (this.title == "") return alert("タイトルを入力してください");
+    addTask(form) {
+      if (form.title == "") return alert("タイトルを入力してください");
       this.addTasks({
-        title: this.title,
-        body: this.body,
+        title: form.title,
+        body: form.body,
       });
       this.$router.push("/");
     },

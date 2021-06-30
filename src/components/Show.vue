@@ -21,10 +21,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "Show",
   data() {
-    return {
-      title: "",
-      body: "",
-    };
+    return { title: "", body: "" };
   },
   created() {
     this.title = this.getTasks[this.taskId].title;
